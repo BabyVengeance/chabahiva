@@ -1,10 +1,13 @@
 /**
- * CHABAHIVA Trust — Main JavaScript Controller
- * Lightweight vanilla JavaScript (<15KB) with zero external dependencies
+ * CHABAHIVA Trust — Main JavaScript Controller & Interaction Engine
+ * Built under Emil Kowalski Design Engineering principles
+ * Lightweight vanilla JavaScript with zero external dependencies
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Drawer Navigation
+  // ==========================================================================
+  // 1. Mobile Drawer Navigation (GPU-Accelerated Slide)
+  // ==========================================================================
   const mobileToggle = document.getElementById('mobileToggle');
   const mobileDrawer = document.getElementById('mobileDrawer');
   const drawerBackdrop = document.getElementById('drawerBackdrop');
@@ -36,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ==========================================================================
   // 2. Interactive Giraffe Metaphor Explorer & Highlight Engine
+  // ==========================================================================
   const metaphorPills = document.querySelectorAll('.metaphor-pill');
   const visualTag = document.getElementById('giraffeTag');
   const visualDesc = document.getElementById('giraffeDesc');
@@ -102,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
       giraffeContainer.classList.add('has-active-part');
     }
 
-    // 5. Update descriptive text and tag
+    // 5. Update descriptive text and tag with gentle crossfade
     if (visualTag && visualDesc) {
       visualTag.textContent = metaphorData[key].tag;
       visualDesc.textContent = metaphorData[key].desc;
@@ -128,7 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial activation (Height & Perspective)
   selectMetaphor('height');
 
+  // ==========================================================================
   // 3. Interactive SROI & Grant Allocation Simulator
+  // ==========================================================================
   const investmentSlider = document.getElementById('investmentSlider');
   const sliderDisplay = document.getElementById('sliderDisplay');
   const statEducators = document.getElementById('statEducators');
@@ -142,9 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sliderDisplay.textContent = formatted;
 
     // Computational formulas based on average SA NPO program allocations:
-    // Avg Peer Educator stipend + training unit: ~R25,000 / 6mo
-    // Community Health Worker support unit: ~R35,000 / 6mo
-    // Direct community beneficiary reach per R1,000: ~18 individuals
     const educators = Math.floor(amount / 25000);
     const workers = Math.floor(amount / 35000);
     const beneficiaries = Math.floor(amount * 0.018 * 100);
@@ -154,6 +158,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (statWorkers) statWorkers.textContent = workers.toLocaleString();
     if (statBeneficiaries) statBeneficiaries.textContent = beneficiaries.toLocaleString() + "+";
     if (statSROI) statSROI.textContent = `R 1 : R ${sroiRatio}`;
+
+    // Emil Kowalski Tactile Micro-Interactivity: Subtle number punch on adjustment
+    [statEducators, statWorkers, statBeneficiaries, statSROI].forEach(el => {
+      if (el) {
+        el.style.transform = 'scale(1.04)';
+        el.style.transition = 'transform 100ms cubic-bezier(0.23, 1, 0.32, 1)';
+        setTimeout(() => {
+          el.style.transform = 'scale(1)';
+        }, 100);
+      }
+    });
   }
 
   if (investmentSlider) {
@@ -164,7 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSimulator(parseInt(investmentSlider.value, 10));
   }
 
+  // ==========================================================================
   // 4. 60-Second Grant Eligibility Checker
+  // ==========================================================================
   const checkBtn = document.getElementById('runEligibilityCheck');
   const eligibleBox = document.getElementById('eligibleResult');
   const ineligibleBox = document.getElementById('ineligibleResult');
@@ -178,17 +195,29 @@ document.addEventListener('DOMContentLoaded', () => {
       const qProvince = document.getElementById('checkProvince')?.checked;
 
       // Note: Must NOT be religious proselytizing, must be registered NPO, must have SDG3 focus, province match
-      if (qNPO && qAge && qSDG && qReligious && qProvince) {
-        if (eligibleBox) eligibleBox.style.display = 'block';
+      const isEligible = Boolean(qNPO && qAge && qSDG && qReligious && qProvince);
+
+      if (isEligible) {
+        if (eligibleBox) {
+          eligibleBox.style.display = 'block';
+          eligibleBox.style.opacity = '1';
+          eligibleBox.style.transform = 'translateY(0)';
+        }
         if (ineligibleBox) ineligibleBox.style.display = 'none';
       } else {
         if (eligibleBox) eligibleBox.style.display = 'none';
-        if (ineligibleBox) ineligibleBox.style.display = 'block';
+        if (ineligibleBox) {
+          ineligibleBox.style.display = 'block';
+          ineligibleBox.style.opacity = '1';
+          ineligibleBox.style.transform = 'translateY(0)';
+        }
       }
     });
   }
 
+  // ==========================================================================
   // 5. Contact Triage Form Handling
+  // ==========================================================================
   const triageForm = document.getElementById('triageForm');
   const formSuccess = document.getElementById('formSuccess');
 
@@ -199,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Transmitting to Registry...';
+        submitBtn.style.opacity = '0.75';
       }
       setTimeout(() => {
         triageForm.style.display = 'none';
@@ -206,4 +236,69 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 700);
     });
   }
+
+  // ==========================================================================
+  // 6. Emil Kowalski Unhurried Scroll Reveal Observer
+  // ==========================================================================
+  const initScrollReveals = () => {
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const targets = document.querySelectorAll([
+      '.reveal-on-scroll',
+      '.hero-content > *',
+      '.hero-card-stack',
+      '.metric-card',
+      '.donor-spotlight-card',
+      '.giraffe-grid > *',
+      '.innovation-card',
+      '.trustee-card',
+      '.pillar-col-card',
+      '.contact-form-card',
+      '.map-embed-wrapper',
+      '.checker-card',
+      '.simulator-card',
+      '.statutory-callout-grid > *',
+      '.vision-values-grid > *',
+      '.key-details-grid > *',
+      '.doc-category-card'
+    ].join(', '));
+
+    if (prefersReducedMotion) {
+      targets.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.08
+    };
+
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    targets.forEach(el => {
+      el.classList.add('reveal-on-scroll');
+      
+      // Calculate gentle stagger for sibling elements
+      const parent = el.parentElement;
+      if (parent && parent.children.length > 1) {
+        const siblingIndex = Array.prototype.indexOf.call(parent.children, el);
+        const staggerIndex = (siblingIndex % 6) + 1;
+        el.classList.add(`stagger-${staggerIndex}`);
+      }
+      
+      revealObserver.observe(el);
+    });
+  };
+
+  // Run scroll reveal registration
+  initScrollReveals();
 });
