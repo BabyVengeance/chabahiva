@@ -1,0 +1,15 @@
+# Knowledge Hub - Client Raw Files & Local Context
+context/raw/
+context/**/*.pdf
+context/**/*.docx
+context/**/*.pptx
+context/**/*.zip
+
+# Environment & Temp Files
+.env
+.env.local
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
