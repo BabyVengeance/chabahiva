@@ -177,7 +177,7 @@
         <p style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 16px;">
           All applicants must submit seven statutory and governance verification documents in order to be considered:
         </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+        <div class="fiduciary-doc-grid">
           <!-- Category 1: Financial & Operating Disclosures (3 items) -->
           <div style="background-color: var(--color-canvas-slate); padding: 22px; border-radius: var(--radius-lg); border: 1.5px solid var(--border-light);">
             <strong style="color: var(--color-primary); font-size: 0.92rem; display: block; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.04em;">Financial & Operating Disclosures</strong>
@@ -289,12 +289,12 @@
         <button id="runEligibilityCheck" class="btn btn-primary" style="width: 100%;">Verify Application Readiness</button>
 
         <!-- Dynamic Results -->
-        <div id="eligibleResult" class="checker-result-box eligible">
+        <div id="eligibleResult" class="checker-result-box">
           <strong style="display: block; font-size: 1.1rem; margin-bottom: 6px;">Pre-Qualification Confirmed!</strong>
           Your organisation meets the preliminary criteria for the R250,000 funding call. Please prepare your latest Audited Financials, Valid Tax Clearance Certificate, NPO Certificate, and Board CVs, then complete the confidential triage intake form below or submit via the official Google Application portal.
         </div>
 
-        <div id="ineligibleResult" class="checker-result-box ineligible">
+        <div id="ineligibleResult" class="checker-result-box">
           <strong style="display: block; font-size: 1.1rem; margin-bottom: 6px;">Notice: Criteria Incomplete</strong>
           Please ensure all five mandatory conditions are checked. The CHABAHIVA Trust mandate strictly requires registered South African NPO status, 2-5 years operating track record, target provincial operation, SDG 3 public health alignment, and strictly non-religious programming.
         </div>
