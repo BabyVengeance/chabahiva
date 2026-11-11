@@ -256,6 +256,8 @@ document.addEventListener('DOMContentLoaded', () => {
       '.pillar-col-card',
       '.contact-form-card',
       '.map-embed-wrapper',
+      '.video-frame-container',
+      '.video-wrapper',
       '.checker-card',
       '.simulator-card',
       '.statutory-callout-grid > *',

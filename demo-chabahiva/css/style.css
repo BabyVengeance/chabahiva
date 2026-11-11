@@ -968,36 +968,65 @@ p {
 /* ==========================================================================
    Video Spotlight Section
    ========================================================================== */
-.video-section {
-  padding: 80px 0;
+.video-section,
+.video-showcase-section {
+  padding: clamp(60px, 8vw, 96px) 0;
   background-color: var(--color-canvas-slate);
   border-bottom: 1px solid var(--border-light);
 }
 
 .video-frame-container {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   background-color: #000000;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 20px 48px -10px rgba(0, 67, 105, 0.16), 0 0 0 1px var(--border-light);
   border: 1px solid var(--border-light);
 }
 
 .video-responsive {
   position: relative;
+  width: 100%;
   padding-bottom: 56.25%; /* 16:9 ratio */
   height: 0;
   overflow: hidden;
 }
 
-.video-responsive iframe {
+.video-responsive iframe,
+.video-frame-container iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border: 0;
+  display: block;
+}
+
+/* Fallback for direct video-wrapper usage */
+.video-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+  background-color: #000000;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 48px -10px rgba(0, 67, 105, 0.16), 0 0 0 1px var(--border-light);
+  border: 1px solid var(--border-light);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 /* ==========================================================================
@@ -2074,14 +2103,18 @@ p {
   }
 
   .contact-form-card,
-  .map-embed-card {
+  .map-embed-card,
+  .video-frame-container,
+  .video-wrapper {
     transition: transform 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out), border-color 0.24s var(--ease-out);
   }
 
   .contact-form-card:hover,
-  .map-embed-card:hover {
-    box-shadow: var(--shadow-card);
-    border-color: rgba(0, 67, 105, 0.18);
+  .map-embed-card:hover,
+  .video-frame-container:hover,
+  .video-wrapper:hover {
+    box-shadow: 0 24px 56px -12px rgba(0, 67, 105, 0.22);
+    border-color: rgba(0, 67, 105, 0.25);
   }
 
   .checker-option:hover {

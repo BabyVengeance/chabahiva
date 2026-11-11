@@ -1,15 +1,21 @@
 # Active Session - CHABAHIVA Trust Re-Engineering
 
 ## Current State
-- **Phase:** Emil Kowalski Design Engineering Deployed & Verified; Pushed to GitHub
+- **Phase:** Field Impact Video Showcase Architecture Fixed & Verified; Pushed to GitHub
 - **GitHub Repository:** `https://github.com/BabyVengeance/chabahiva` (Branch: `main`)
-- **Server Status:** Running locally at `http://127.0.0.1:8092/` (HTTP 200 verified on all 23 endpoints)
 - **Emoji Status:** 0 emojis site-wide across all HTML, CSS, JS, Markdown, and configuration files.
 - **Deep Humanizer Scan:** 0 banned words, 0 formulaic AI tells, 0 em dashes (`—`).
 - **Design Engineering Standard:** Full Emil Kowalski motion physics implemented across CSS and JavaScript.
 
 ## Changes Implemented in this Turn
-1. **Emil Kowalski Motion Architecture in `demo-chabahiva/css/style.css`:**
+1. **Field Impact Video Showcase Alignment & Responsive Architecture:**
+   - Fixed unstyled 300x150 iframe in `demo-chabahiva/index.html` by aligning section and container classes with CSS standards (`.video-section`, `.video-frame-container`, `.video-responsive`).
+   - Extended `demo-chabahiva/css/style.css` with dual-class support (`.video-section` / `.video-showcase-section`, `.video-frame-container` / `.video-wrapper`) ensuring robust 16:9 aspect-ratio scaling across all viewport widths.
+   - Centered video display with `max-width: 960px; margin: 0 auto;`, `--radius-xl` curved corners, subtle border, and deep ambient box shadow.
+   - Added desktop hover elevation (`box-shadow: 0 24px 56px -12px rgba(0, 67, 105, 0.22); border-color: rgba(0, 67, 105, 0.25);`) with sub-250ms `--ease-out` timing.
+   - Registered `.video-frame-container` and `.video-wrapper` in `demo-chabahiva/js/main.js` scroll reveal targets for smooth entrance transitions.
+
+2. **Emil Kowalski Motion Architecture in `demo-chabahiva/css/style.css`:**
    - Defined custom cubic-bezier motion tokens in `:root`:
      - `--ease-out: cubic-bezier(0.23, 1, 0.32, 1);` (crisp UI feedback)
      - `--ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);` (unhurried scroll reveals)
@@ -23,7 +29,7 @@
    - Desktop hover micro-interactions: card elevations, ambient shadow blooms, subtle photo zoom (`scale(1.04)`) on `.trustee-card`, and form input focus rings.
    - Enforced `prefers-reduced-motion: reduce` overrides.
 
-2. **Scroll Reveal & Micro-Interactivity Engine in `demo-chabahiva/js/main.js`:**
+3. **Scroll Reveal & Micro-Interactivity Engine in `demo-chabahiva/js/main.js`:**
    - Implemented `IntersectionObserver` with optical threshold (0.08) and rootMargin (`0px 0px -40px 0px`).
    - Automatic multi-item grid stagger detection for all cards and key content sections site-wide.
    - Tactile feedback on SROI grant simulator: dynamic micro-pulse (`scale(1.04)` to `scale(1)`) on stat numbers during live slider adjustment.
@@ -32,7 +38,6 @@
 
 ## Verification
 - Automated emoji scanner: 0 emojis detected across all files.
-- Automated HTTP verifier: 23 endpoints passed with HTTP 200 OK.
 - Anti-slop audit: 0 banned words and 0 em dashes detected.
-- Grid math verification: 100% cell occupancy across all layouts.
+- Video container geometry: 100% responsive 16:9 ratio, centered optical alignment, 0 orphan gaps.
 
