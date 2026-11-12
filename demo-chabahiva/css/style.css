@@ -1094,26 +1094,58 @@ p {
 
 .range-slider {
   width: 100%;
-  height: 8px;
+  height: 10px;
   border-radius: var(--radius-full);
-  background: #CBD5E1;
+  background: #E2E8F0;
   outline: none;
   -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transition: background 0.1s ease;
 }
 
 .range-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
+  appearance: none;
   width: 24px;
   height: 24px;
   border-radius: 50%;
   background: var(--color-accent);
+  border: 2.5px solid #FFFFFF;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(199, 16, 18, 0.4);
-  transition: transform 0.1s ease;
+  box-shadow: 0 2px 10px rgba(199, 16, 18, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .range-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
+  transform: scale(1.18);
+  box-shadow: 0 4px 14px rgba(199, 16, 18, 0.6);
+}
+
+.range-slider:active::-webkit-slider-thumb {
+  transform: scale(1.24);
+  cursor: grabbing;
+}
+
+.range-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 2.5px solid #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(199, 16, 18, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.range-slider::-moz-range-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 4px 14px rgba(199, 16, 18, 0.6);
+}
+
+.range-slider:active::-moz-range-thumb {
+  transform: scale(1.24);
+  cursor: grabbing;
 }
 
 .simulator-results {
@@ -1237,8 +1269,9 @@ p {
   overflow: hidden;
   box-shadow: var(--shadow-card);
   transition: transform 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out), border-color 0.24s var(--ease-out);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  align-items: stretch;
 }
 
 .trustee-card.featured-chairperson {
@@ -1250,9 +1283,18 @@ p {
   box-shadow: var(--shadow-md);
 }
 
-.trustee-card.featured-chairperson .trustee-photo-wrap {
+.trustee-photo-wrap {
+  width: 100%;
   height: 100%;
   min-height: 280px;
+  overflow: hidden;
+  background-color: var(--color-canvas-slate);
+  position: relative;
+}
+
+.trustee-card.featured-chairperson .trustee-photo-wrap {
+  height: 100%;
+  min-height: 300px;
 }
 
 .trustee-card.featured-chairperson .trustee-details {
@@ -1260,12 +1302,53 @@ p {
   justify-content: center;
 }
 
-@media (max-width: 860px) {
+.trustee-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 14%;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+/* Specific focal points to guarantee facial integrity & headroom across all trustees */
+.trustee-photo-wrap img[src*="lungile"] {
+  object-position: center 14%;
+}
+.trustee-photo-wrap img[src*="ashmeer"] {
+  object-position: center 10%;
+}
+.trustee-photo-wrap img[src*="nosisa"] {
+  object-position: center 16%;
+}
+.trustee-photo-wrap img[src*="albrecht"] {
+  object-position: center 10%;
+}
+.trustee-photo-wrap img[src*="sello"] {
+  object-position: center 14%;
+}
+
+@media (max-width: 992px) {
+  .trustees-grid {
+    grid-template-columns: 1fr;
+  }
+  .trustee-card {
+    grid-template-columns: 240px 1fr;
+  }
+  .trustee-card.featured-chairperson {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .trustee-card,
   .trustee-card.featured-chairperson {
     grid-template-columns: 1fr;
   }
+  .trustee-photo-wrap,
   .trustee-card.featured-chairperson .trustee-photo-wrap {
-    height: 300px;
+    height: clamp(300px, 72vw, 360px);
+    min-height: auto;
   }
 }
 
@@ -1273,21 +1356,6 @@ p {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
   border-color: var(--color-primary-light);
-}
-
-.trustee-photo-wrap {
-  width: 100%;
-  height: 280px;
-  overflow: hidden;
-  background-color: var(--color-canvas-slate);
-}
-
-.trustee-photo-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.4s ease;
 }
 
 .trustee-card:hover .trustee-photo-wrap img {
@@ -1879,7 +1947,7 @@ p {
     grid-template-columns: 1fr;
   }
   .trustees-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
@@ -2231,6 +2299,13 @@ p {
   color: rgba(255, 255, 255, 0.5);
   display: block;
   margin-bottom: 8px;
+}
+
+.footer-donor-logos {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .footer-donor-strip img {

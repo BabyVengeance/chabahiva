@@ -1,10 +1,10 @@
-# CHABAHIVA Trust Knowledge Hub (`context/`)
+# CHABAHIVA TRUST - KNOWLEDGE HUB
 
-This directory serves as the centralized persistent memory bank and project source of truth for CHABAHIVA Trust.
+This directory serves as the centralized context repository and persistent state tracker for the CHABAHIVA Trust web platform.
 
-## Directory Index
-- `business_intel.md` — Verified entity details, governance, mission, statutory numbers (IT 3101/2009, PBO 930045684), programs, and contact NAP.
-- `tech_stack.md` — Design system, color tokens derived from logo, typography pairing, route map, performance benchmarks.
-- `active_session.md` — Current execution state, completed milestones, blockers, and immediate roadmap.
-- `raw/` — Scraped HTML pages, media manifests, extraction scripts, and raw dumps (gitignored).
-- `docs/` — Architectural specs, research dossiers, and audit artifacts.
+## File Index
+- `business_intel.md`: Organization identity, governance, mission, key contacts, and institutional donors.
+- `tech_stack.md`: Frontend architecture, design tokens, typographic hierarchy, responsive grid rules, and component styling.
+- `active_session.md`: Real-time session progress, recent modifications, resolved bugs, and next milestones.
+- `raw/`: Unmodified source assets, donor briefs, and client documentation.
+

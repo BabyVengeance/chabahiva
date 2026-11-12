@@ -136,33 +136,45 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 3. Interactive SROI & Grant Allocation Simulator
   // ==========================================================================
-  const investmentSlider = document.getElementById('investmentSlider');
-  const sliderDisplay = document.getElementById('sliderDisplay');
-  const statEducators = document.getElementById('statEducators');
+  const slider = document.getElementById('grantSlider') || document.getElementById('investmentSlider');
+  const sliderDisplay = document.getElementById('sliderValue') || document.getElementById('sliderDisplay');
+  const simPeers = document.getElementById('simPeers') || document.getElementById('statEducators');
+  const simScreened = document.getElementById('simScreened') || document.getElementById('statBeneficiaries');
+  const simRetention = document.getElementById('simRetention') || document.getElementById('statSROI');
   const statWorkers = document.getElementById('statWorkers');
-  const statBeneficiaries = document.getElementById('statBeneficiaries');
-  const statSROI = document.getElementById('statSROI');
 
   function updateSimulator(amount) {
-    if (!sliderDisplay) return;
-    const formatted = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR', maximumFractionDigits: 0 }).format(amount);
-    sliderDisplay.textContent = formatted;
+    if (!slider) return;
+    const min = parseInt(slider.min, 10) || 50000;
+    const max = parseInt(slider.max, 10) || 1000000;
+    const pct = ((amount - min) / (max - min)) * 100;
 
-    // Computational formulas based on average SA NPO program allocations:
-    const educators = Math.floor(amount / 25000);
-    const workers = Math.floor(amount / 35000);
-    const beneficiaries = Math.floor(amount * 0.018 * 100);
-    const sroiRatio = (3.4 + (amount / 1000000) * 0.4).toFixed(1);
+    // Tactile active track gradient fill
+    slider.style.background = `linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) ${pct}%, #E2E8F0 ${pct}%, #E2E8F0 100%)`;
 
-    if (statEducators) statEducators.textContent = educators.toLocaleString();
-    if (statWorkers) statWorkers.textContent = workers.toLocaleString();
-    if (statBeneficiaries) statBeneficiaries.textContent = beneficiaries.toLocaleString() + "+";
-    if (statSROI) statSROI.textContent = `R 1 : R ${sroiRatio}`;
+    // Format currency in ZAR (R 250,000)
+    const formatted = 'R ' + amount.toLocaleString('en-ZA');
+    if (sliderDisplay) sliderDisplay.textContent = formatted;
+
+    // Realistic calculations based on grassroots community health metrics:
+    // 1. Peer Educators: ~R20,000 per certified community peer educator (training, stipend, materials)
+    const peers = Math.max(2, Math.floor(amount / 20000));
+    // 2. Youth Screened & Tested: ~15 youth screened and tested per R1,000 invested (R66.67 per voluntary test)
+    const screened = Math.floor(amount * 0.015);
+    // 3. Treatment Retention: adherence rate supported by peer retention follow-up
+    const retentionRate = Math.min(98.8, 94.2 + (amount / 1000000) * 4.6).toFixed(1);
+
+    if (simPeers) simPeers.textContent = `${peers.toLocaleString()} Trained`;
+    if (simScreened) simScreened.textContent = `${screened.toLocaleString()} Youth`;
+    if (simRetention) simRetention.textContent = `${retentionRate}% Rate`;
+
+    // Legacy fallback support if present
+    if (statWorkers) statWorkers.textContent = Math.floor(amount / 35000).toLocaleString();
 
     // Emil Kowalski Tactile Micro-Interactivity: Subtle number punch on adjustment
-    [statEducators, statWorkers, statBeneficiaries, statSROI].forEach(el => {
+    [simPeers, simScreened, simRetention, statWorkers].forEach(el => {
       if (el) {
-        el.style.transform = 'scale(1.04)';
+        el.style.transform = 'scale(1.035)';
         el.style.transition = 'transform 100ms cubic-bezier(0.23, 1, 0.32, 1)';
         setTimeout(() => {
           el.style.transform = 'scale(1)';
@@ -171,12 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (investmentSlider) {
-    investmentSlider.addEventListener('input', (e) => {
+  if (slider) {
+    slider.addEventListener('input', (e) => {
       updateSimulator(parseInt(e.target.value, 10));
     });
-    // Initial run
-    updateSimulator(parseInt(investmentSlider.value, 10));
+    // Initial run to hydrate track and display
+    updateSimulator(parseInt(slider.value, 10));
   }
 
   // ==========================================================================
