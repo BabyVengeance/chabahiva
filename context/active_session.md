@@ -20,6 +20,12 @@
 - Responsive breakpoints tested: Desktop (>= 992px), Tablet (680px - 992px), Mobile (<= 680px).
 - Zero emoji invariant: Enforced across all modified files and documentation.
 
+## Deployment
+- GitHub Remote: https://github.com/BabyVengeance/chabahiva.git
+- Branch: main
+- Latest Commit: 268f75a ("Fix trustee portrait framing, integrate Evangelical Church of Westphalia donor logo, and resolve SROI simulator controller")
+- Status: Synced and up to date with origin/main
+
 ## Next Steps
 - Verify visual presentation in live staging environment.
 - Confirm client review for About page fiduciary section.
