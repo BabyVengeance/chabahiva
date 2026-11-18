@@ -24,6 +24,11 @@
   - 320px small device: 0 overflow, touch footprints >= 48px.
 - Zero emoji invariant: 100% clean across code, comments, and markdown.
 
+## Deployment
+- GitHub Remote: https://github.com/BabyVengeance/chabahiva.git
+- Branch: main
+- Latest Commit: 5bc381a ("Integrate frontline health impact ribbon from verified TTMC report and purge duplicate demo directory")
+- Status: Synced and up to date with origin/main
+
 ## Next Steps
-- Present Option A live implementation to client ahead of Thursday's management committee meeting.
-- Stage changes or push to origin/main once user reviews.
+- Present live implementation to client ahead of Thursday's management committee meeting.
