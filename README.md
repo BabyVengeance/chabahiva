@@ -21,7 +21,7 @@ Modernized web platform and operations architecture for the CHABAHIVA Trust (Chu
 │   ├── terms-of-service.html# Funding terms, conditions & legal obligations
 │   ├── paia-manual.html     # Promotion of Access to Information Act (PAIA) s51 Manual
 │   ├── css/
-│   │   └── style.css        # Sovereign UI architecture & responsive design tokens
+│   │   └── style.css        # Executive healthcare UI architecture & responsive design tokens
 │   ├── js/
 │   │   └── main.js         # Interactive SVG giraffe, grant simulator, intake triage
 │   └── assets/              # WebP/PNG logos, donor marks, and leadership photography
@@ -35,7 +35,7 @@ Modernized web platform and operations architecture for the CHABAHIVA Trust (Chu
 ## Local Development & Testing
 To preview the platform locally:
 ```bash
-python -m http.server 8092 --directory "demo-chabahiva"
+python -m http.server 8092
 ```
 Then navigate to `http://127.0.0.1:8092/`.
 

@@ -1,31 +1,29 @@
 # ACTIVE SESSION - CHABAHIVA TRUST
 
-## Task Summary
-1. Trustee Portrait Framing Fix:
-   - Issue: Trustee portrait images were horizontally clipped across the face on the About page (`about.html`), cutting off mouths, chins, and facial features.
-   - Resolution: Refactored `.trustee-card` into an Executive Split Dossier (`grid-template-columns: 220px 1fr`) on desktop, calibrated individual `object-position` coordinates (`center 10% - 16%`), and hardened mobile/tablet breakpoints with clamped height.
-2. Institutional Donor / Investor Integration (Evangelical Church of Westphalia):
-   - Added the Evangelical Church of Westphalia institutional partner logo alongside Otto per Mille across all primary touchpoints:
-     - `partners.html`: Under `#investors` (Investment Partners / Capital Allocators).
-     - `about.html`: In the Institutional Partners & Donors Accreditation grid above Governance.
-     - `index.html`: In the premier Anchor Institutional Donor Spotlight card.
-     - All 8 site footers (`about.html`, `index.html`, `innovations.html`, `opportunities.html`, `paia-manual.html`, `partners.html`, `privacy-policy.html`, `terms-of-service.html`): Added dual white logo presentation inside `.footer-donor-strip`.
-3. Interactive SROI Impact Simulator Controller Fix:
-   - Issue: The SROI slider on `innovations.html` was completely non-functional when dragged.
-   - Root Cause: ID mismatch between HTML DOM elements (`grantSlider`, `sliderValue`, `simPeers`, `simScreened`, `simRetention`) and JavaScript query selectors (`investmentSlider`, `sliderDisplay`, `statEducators`, etc.). The event listener was never attached because the element was null.
-   - Resolution: Rewrote Section 3 in `js/main.js` with multi-ID fallback selectors, added real-time currency formatting (R 50,000 - R 1,000,000), dynamic gradient track fill following the thumb, calibrated community health metrics formulas, and Emil Kowalski tactile scale punch animations. Updated `css/style.css` with cross-browser thumb styling (`::-webkit-slider-thumb` and `::-moz-range-thumb`) and white tactile border rings.
+## Current State & Immediate Focus
+- Option A Implementation & Humanizer Pass Completed:
+  - Replaced generic UNAIDS 95-95-95 ribbon in `index.html` with an executive Frontline Field Results Ribbon (`#field-impact`).
+  - Purged decorative pill badge (`Verified Frontline Telemetry`) above the heading.
+  - Banned and purged the word "telemetry" across all HTML markup, CSS classes, IDs, and copywriting.
+  - Applied humanizer editorial directives: eliminated throat-clearing intro copy and corporate abstraction in favor of concrete frontline descriptions ("Healthcare Delivery Where Fixed Clinics Cannot Reach").
+  - Grounded the 4 metric cards in tangible operational reality:
+    - 54,732 Patient Consultations (including 9,992 pediatric under-5 visits).
+    - 11,956 ARV Regimens Delivered to forestry and farm workers at workplace gates.
+    - 0.4% HIV Positivity Rate (18 positive cases from 5,052 diagnostic screenings).
+    - 6 Mobile Health Units operating scheduled routes across 8 main rural hubs.
+  - Multi-stakeholder accreditation bar: TTMC, Vumbuka Trust, Mpumalanga Department of Health, KZN Department of Health, Mondi, NELCSA, and Busby Sawmills.
+  - Direct action triggers: `View Operational Footprint` (`partners.html#provinces`) and `View Full Power BI Report` (external Azure dashboard).
+  - CSS engine in `css/style.css` updated with `field-impact-*` classes (4-col desktop, 2-col tablet, 1-col mobile).
 
-## Verification
-- Edge headshot analysis: Full head, hair, eyes, nose, mouth, chin, collar, tie, pearl necklace, and shoulders verified intact across all 5 trustees.
-- Responsive breakpoints tested: Desktop (>= 992px), Tablet (680px - 992px), Mobile (<= 680px).
-- Zero emoji invariant: Enforced across all modified files and documentation.
-
-## Deployment
-- GitHub Remote: https://github.com/BabyVengeance/chabahiva.git
-- Branch: main
-- Latest Commit: 268f75a ("Fix trustee portrait framing, integrate Evangelical Church of Westphalia donor logo, and resolve SROI simulator controller")
-- Status: Synced and up to date with origin/main
+## Verification Status
+- `apex_check.mjs`: 0 errors across all 13 project files.
+- Visual headless render test (`scratch/verify_render.py`):
+  - 1440px desktop: 0 overflow, 4 columns, 100% occupancy.
+  - 768px tablet: 0 overflow, 2 columns.
+  - 375px mobile: 0 overflow, clean single-column stack.
+  - 320px small device: 0 overflow, touch footprints >= 48px.
+- Zero emoji invariant: 100% clean across code, comments, and markdown.
 
 ## Next Steps
-- Verify visual presentation in live staging environment.
-- Confirm client review for About page fiduciary section.
+- Present Option A live implementation to client ahead of Thursday's management committee meeting.
+- Stage changes or push to origin/main once user reviews.
